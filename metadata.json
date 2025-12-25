@@ -1,0 +1,7 @@
+{
+  "name": "GuitarMaster Toolkit",
+  "description": "A comprehensive guitar utility for musicians featuring interactive scales, chord libraries, metronome, and theory tools. Supports custom tunings and provides playable fingerings.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
