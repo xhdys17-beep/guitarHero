@@ -1,11 +1,11 @@
 
 import React, { useState, useMemo, useRef, useEffect } from 'react';
-import { Tuning, Note, ScaleType, DisplayMode, ChordType, Language } from './types';
-import { TUNINGS, NOTES, TRANSLATIONS } from './constants';
-import { getScaleNotes, generateChordShapes } from './services/guitarEngine';
-import Fretboard from './components/Fretboard';
-import ChordCard from './components/ChordCard';
-import Metronome from './components/Metronome';
+import { Tuning, Note, ScaleType, DisplayMode, ChordType, Language } from './types.ts';
+import { TUNINGS, NOTES, TRANSLATIONS } from './constants.ts';
+import { getScaleNotes, generateChordShapes } from './services/guitarEngine.ts';
+import Fretboard from './components/Fretboard.tsx';
+import ChordCard from './components/ChordCard.tsx';
+import Metronome from './components/Metronome.tsx';
 import { Music, Layers, Layout, ChevronDown, Globe, Edit3, AlertCircle, Check } from 'lucide-react';
 
 /**

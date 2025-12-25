@@ -1,7 +1,7 @@
 
 import React from 'react';
-import { Note, DisplayMode, Tuning } from '../types';
-import { getNoteAtFret, getDegree } from '../services/guitarEngine';
+import { Note, DisplayMode, Tuning } from '../types.ts';
+import { getNoteAtFret, getDegree } from '../services/guitarEngine.ts';
 
 interface FretboardProps {
   tuning: Tuning;

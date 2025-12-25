@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { ChordFingering, Note } from '../types';
+import { ChordFingering, Note } from '../types.ts';
 
 interface ChordCardProps {
   fingering: ChordFingering;

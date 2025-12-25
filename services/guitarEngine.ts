@@ -1,6 +1,6 @@
 
-import { Note, ScaleType, ChordType, ChordFingering } from '../types';
-import { NOTES, SCALE_INTERVALS } from '../constants';
+import { Note, ScaleType, ChordType, ChordFingering } from '../types.ts';
+import { NOTES, SCALE_INTERVALS } from '../constants.ts';
 
 export const getNoteIndex = (note: Note): number => NOTES.indexOf(note);
 
