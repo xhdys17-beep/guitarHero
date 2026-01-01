@@ -6,7 +6,8 @@ import { getScaleNotes, generateChordShapes } from './services/guitarEngine.ts';
 import Fretboard from './components/Fretboard.tsx';
 import ChordCard from './components/ChordCard.tsx';
 import Metronome from './components/Metronome.tsx';
-import { Music, Layers, Layout, ChevronDown, Globe, Edit3, AlertCircle, Check } from 'lucide-react';
+import ChipCalculator from './components/ChipCalculator.tsx';
+import { Music, Layers, Layout, ChevronDown, Globe, Edit3, AlertCircle, Check, Zap } from 'lucide-react';
 
 /**
  * A custom styled note selector component for tuning strings
@@ -83,6 +84,7 @@ const App: React.FC = () => {
   const [displayMode, setDisplayMode] = useState<DisplayMode>(DisplayMode.NoteNames);
   const [chordType, setChordType] = useState<ChordType>('Major');
   const [isTuningMenuOpen, setIsTuningMenuOpen] = useState(false);
+  const [showCalculator, setShowCalculator] = useState(false);
   
   const tuningMenuRef = useRef<HTMLDivElement>(null);
 
@@ -118,6 +120,7 @@ const App: React.FC = () => {
   };
 
   const isStandardTuning = currentTuning.name === 'Standard' && !isCustomTuning;
+  const isAAAAAA = currentTuning.notes.every(n => n === 'A');
 
   const CHORD_TYPES: ChordType[] = [
     'Major', 'Minor', '7', 'maj7', 'm7', 
@@ -125,6 +128,10 @@ const App: React.FC = () => {
     '6', 'm6', 'add9', 'madd9', 
     'sus2', 'sus4', '9', 'm9', 'maj9'
   ];
+
+  if (showCalculator) {
+    return <ChipCalculator onBack={() => setShowCalculator(false)} lang={lang} />;
+  }
 
   return (
     <div className="min-h-screen flex flex-col md:flex-row bg-white selection:bg-orange-100 selection:text-orange-900">
@@ -276,6 +283,15 @@ const App: React.FC = () => {
             <div className="mt-8 p-6 bg-slate-50/50 rounded-3xl border-2 border-dashed border-orange-200 flex flex-col md:flex-row md:items-center gap-6 animate-in slide-in-from-top-4 shadow-[inset_0_2px_10px_rgba(249,115,22,0.02)]">
               <div className="flex items-center gap-3 text-orange-600 font-black text-xs uppercase tracking-widest bg-white px-4 py-2 rounded-xl shadow-sm border border-orange-100 shrink-0">
                 <Edit3 size={16} className="text-orange-500" /> {t.customTuning}
+                {isAAAAAA && (
+                  <button 
+                    onClick={() => setShowCalculator(true)}
+                    className="ml-4 bg-slate-900 text-white p-2 rounded-lg hover:bg-orange-600 transition-all flex items-center gap-2 animate-bounce"
+                  >
+                    <Zap size={14} className="fill-current" />
+                    <span className="text-[10px]">{lang === 'zh' ? '开启筹码计算器' : 'Open Chip Calculator'}</span>
+                  </button>
+                )}
               </div>
               <div className="flex flex-wrap gap-3 md:gap-5">
                 {currentTuning.notes.map((note, idx) => (
